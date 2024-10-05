@@ -2,8 +2,15 @@ import React from "react";
 import GroceryItem from "./GroceryItem";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SearchGrocery from "./SearchGrocery";
 
-const GroceriesList = ({ groceries, cart, setCart }) => {
+const GroceriesList = ({
+	groceries,
+	cart,
+	setCart,
+	setGroceries,
+	fixedGroceries,
+}) => {
 	const addToCart = (cartItem) => {
 		const itemInCart = cart.find((element) => element.id === cartItem.id);
 
@@ -20,23 +27,34 @@ const GroceriesList = ({ groceries, cart, setCart }) => {
 			});
 			setCart(updatedCart);
 		} else {
+			toast.success("Item added successfully!!");
 			setCart([...cart, { ...cartItem, quantity: 1 }]);
 		}
 	};
 	return (
 		<div className="main-container p-120">
+			<SearchGrocery
+				setGroceries={setGroceries}
+				fixedGroceries={fixedGroceries}
+			/>
 			<div className="groceries-container">
-				{groceries.map((grocery) => (
-					<GroceryItem
-						key={grocery.id}
-						grocery={grocery}
-						addToCart={addToCart}
-					/>
-				))}
+				{groceries.length > 0 ? (
+					groceries.map((grocery) => (
+						<GroceryItem
+							key={grocery.id}
+							grocery={grocery}
+							addToCart={addToCart}
+						/>
+					))
+				) : (
+					<h1 className="grocery-not-found-message">
+						No Groceries Found
+					</h1>
+				)}
 			</div>
 			<ToastContainer
 				position="top-right"
-				autoClose={1000}
+				autoClose={800}
 				hideProgressBar={false}
 				newestOnTop={false}
 				closeOnClick

@@ -13,6 +13,7 @@ const App = () => {
 	const [isCartOpen, setIsCartOpen] = useState(false);
 	const [totalSpendings, setTotalSpendings] = useState(0);
 
+	const [fixedGroceries, setFixedGroceries] = useState(data);
 	const closeCart = () => {
 		setIsCartOpen(false);
 	};
@@ -25,6 +26,8 @@ const App = () => {
 				groceries={groceries}
 				cart={cart}
 				setCart={setCart}
+				setGroceries={setGroceries}
+				fixedGroceries={fixedGroceries}
 			/>
 			{isCartOpen && <DarkLayer closeCart={closeCart} />}
 			{isCartOpen && (

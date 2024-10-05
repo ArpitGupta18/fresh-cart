@@ -32,18 +32,18 @@
 	background-color: red;
 	padding: 4px;
 	border-radius: 50%;
-	width: 12px;
-	height: 12px;
+	width: 14px;
+	height: 14px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	box-sizing: content-box;
-	font-size: 10px;
+	font-size: 12px;
 	color: white;
 	font-weight: bold;
 	position: absolute;
-	right: -12px;
-	top: -7px;
+	right: -14px;
+	top: -9px;
 }
 
 /** GroceriesList Component */
@@ -180,7 +180,8 @@
 	background-color: rgb(172, 60, 60);
 }
 
-.cart-empty-message {
+.cart-empty-message,
+.grocery-not-found-message {
 	font-size: 40px;
 	margin: 20px;
 	color: var(--secondary-color);
@@ -327,13 +328,53 @@
 /** Footer  */
 .footer {
 	background-color: var(--secondary-color);
-	padding: 16px;
+	padding: 10px;
 	display: flex;
 	justify-content: space-between;
-}
-
-.footer p {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 	font-size: 16px;
 	font-weight: bold;
 	color: white;
+}
+
+.footer p {
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+}
+
+/** SearchGrocery  */
+.search-container {
+	padding-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-icon-bar {
+	display: flex;
+	border: 1px solid;
+	border-radius: 4px;
+}
+
+.search-icon {
+	background-color: white;
+	color: rgba(0, 0, 0, 0.646);
+	width: 40px;
+	height: 40px;
+	padding: 8px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.search-bar {
+	padding: 5px 10px;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	height: 40px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
 }
