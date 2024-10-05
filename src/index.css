@@ -1,0 +1,23 @@
+:root {
+	--primary-color: #fdfffa;
+	--secondary-color: #562c0e;
+	--cta-color: #f2ce1b;
+	--cta-color-hover: #9d8303;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.p-120 {
+	padding-left: 120px;
+	padding-right: 120px;
+}
+
+body {
+	background-color: #deffed;
+	/* position: relative; */
+}
