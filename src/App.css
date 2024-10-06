@@ -378,3 +378,44 @@
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 }
+
+/** Remove From Cart Modal */
+.remove-cart-modal {
+	position: fixed;
+	background-color: white;
+	margin-top: 60px;
+	top: 50px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1002;
+	padding: 20px;
+	border-radius: 16px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 30px;
+	width: 500px;
+}
+
+.remove-cart-text {
+	font-size: 28px;
+	line-height: 40px;
+}
+
+.remove-cart-buttons {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.remove-cart-buttons button {
+	font-size: 16px;
+	border: none;
+	outline: none;
+	background-color: rgb(126, 176, 193);
+	padding: 10px 20px;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+	border-radius: 8px;
+}

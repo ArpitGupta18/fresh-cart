@@ -6,25 +6,19 @@ import CartButton from "./CartButton";
 const CartList = ({
 	cart,
 	closeCart,
-	setCart,
+	emptyCart,
 	totalSpendings,
 	setTotalSpendings,
+	setIsRemoveFromCartModalOpen,
+	setItemToRemove,
 }) => {
 	const total = cart
-		.map((item) => {
-			return Number(item.quantity) * item.price;
-		})
-		.reduce((sum, val) => {
-			return sum + val;
-		}, 0);
+		.map((item) => Number(item.quantity) * item.price)
+		.reduce((sum, val) => sum + val, 0);
 
-	const emptyCart = () => {
-		setCart([]);
-	};
-
-	const removeFromCart = (cartId) => {
-		const updatedCart = cart.filter((item) => item.id !== cartId);
-		setCart(updatedCart);
+	const openRemoveFromCartModal = (cartId) => {
+		setItemToRemove(cartId);
+		setIsRemoveFromCartModalOpen(true);
 	};
 
 	const checkoutCart = () => {
@@ -41,15 +35,18 @@ const CartList = ({
 						<p>
 							<CartButton
 								classVal="cart-btn"
-								handleButton={emptyCart}
+								handleButton={openRemoveFromCartModal}
 								buttonMessage="Empty Cart"
+								val={0}
 							/>
 						</p>
 						{cart.map((cartItem) => (
 							<CartItem
 								cartItem={cartItem}
 								key={cartItem.id}
-								removeFromCart={removeFromCart}
+								removeFromCart={() =>
+									openRemoveFromCartModal(cartItem.id)
+								}
 							/>
 						))}
 						<p>
@@ -57,6 +54,7 @@ const CartList = ({
 								classVal="cart-btn"
 								handleButton={checkoutCart}
 								buttonMessage="Checkout"
+								val={1}
 							/>
 						</p>
 					</>

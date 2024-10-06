@@ -54,7 +54,7 @@ const GroceriesList = ({
 			</div>
 			<ToastContainer
 				position="top-right"
-				autoClose={800}
+				autoClose={700}
 				hideProgressBar={false}
 				newestOnTop={false}
 				closeOnClick

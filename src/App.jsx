@@ -6,19 +6,40 @@ import GroceriesList from "./components/GroceriesList";
 import CartList from "./components/CartList";
 import DarkLayer from "./components/DarkLayer";
 import Footer from "./components/Footer";
+import RemoveFromCartModal from "./components/RemoveFromCartModal";
 
 const App = () => {
 	const [groceries, setGroceries] = useState(data);
 	const [cart, setCart] = useState([]);
 	const [isCartOpen, setIsCartOpen] = useState(false);
 	const [totalSpendings, setTotalSpendings] = useState(0);
-
+	const [isRemoveFromCartModalOpen, setIsRemoveFromCartModalOpen] =
+		useState(false);
+	const [itemToRemove, setItemToRemove] = useState(null);
 	const [fixedGroceries, setFixedGroceries] = useState(data);
+
+	const closeModal = () => {
+		setIsRemoveFromCartModalOpen(false);
+	};
+
+	const emptyCart = () => {
+		setCart([]);
+	};
 	const closeCart = () => {
 		setIsCartOpen(false);
 	};
 
-	console.log(cart);
+	const confirmRemoveItem = () => {
+		if (itemToRemove === "all") {
+			setCart([]);
+		} else {
+			const updatedCart = cart.filter((item) => item.id !== itemToRemove);
+			setCart(updatedCart);
+			setItemToRemove(null);
+		}
+		closeModal();
+	};
+
 	return (
 		<div>
 			<Header cart={cart} setIsCartOpen={setIsCartOpen} />
@@ -29,14 +50,25 @@ const App = () => {
 				setGroceries={setGroceries}
 				fixedGroceries={fixedGroceries}
 			/>
-			{isCartOpen && <DarkLayer closeCart={closeCart} />}
+			{isRemoveFromCartModalOpen && (
+				<>
+					<DarkLayer closeCart={closeModal} zIndexVal="1001" />
+					<RemoveFromCartModal
+						confirmRemove={confirmRemoveItem}
+						closeModal={closeModal}
+					/>
+				</>
+			)}
+			{isCartOpen && <DarkLayer closeCart={closeCart} zIndexVal="999" />}
 			{isCartOpen && (
 				<CartList
 					cart={cart}
 					closeCart={closeCart}
-					setCart={setCart}
 					totalSpendings={totalSpendings}
 					setTotalSpendings={setTotalSpendings}
+					setIsRemoveFromCartModalOpen={setIsRemoveFromCartModalOpen}
+					setItemToRemove={setItemToRemove}
+					emptyCart={emptyCart}
 				/>
 			)}
 			<Footer totalSpendings={totalSpendings} />
