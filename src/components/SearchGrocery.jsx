@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 const SearchGrocery = ({ setGroceries, fixedGroceries }) => {
+	// ! TODO: Solve these issue using derived state
 	const [searchItem, setSearchItem] = useState("");
 
 	const handleChange = (value) => {

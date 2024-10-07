@@ -16,6 +16,8 @@ const App = () => {
 	const [isRemoveFromCartModalOpen, setIsRemoveFromCartModalOpen] =
 		useState(false);
 	const [itemToRemove, setItemToRemove] = useState(null);
+
+	// ! TODO: Solve this issue using derived state
 	const [fixedGroceries, setFixedGroceries] = useState(data);
 
 	const closeModal = () => {
