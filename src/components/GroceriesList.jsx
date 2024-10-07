@@ -9,7 +9,8 @@ const GroceriesList = ({
 	cart,
 	setCart,
 	setGroceries,
-	fixedGroceries,
+	searchItem,
+	setSearchItem,
 }) => {
 	const addToCart = (cartItem) => {
 		const itemInCart = cart.find((element) => element.id === cartItem.id);
@@ -34,8 +35,8 @@ const GroceriesList = ({
 	return (
 		<div className="main-container p-120">
 			<SearchGrocery
-				setGroceries={setGroceries}
-				fixedGroceries={fixedGroceries}
+				searchItem={searchItem}
+				setSearchItem={setSearchItem}
 			/>
 			<div className="groceries-container">
 				{groceries.length > 0 ? (

@@ -1,21 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchGrocery = ({ setGroceries, fixedGroceries }) => {
-	// ! TODO: Solve these issue using derived state
-	const [searchItem, setSearchItem] = useState("");
-
+const SearchGrocery = ({ searchItem, setSearchItem }) => {
 	const handleChange = (value) => {
 		setSearchItem(value);
-		let updatedGroceries = fixedGroceries;
-
-		if (value) {
-			updatedGroceries = fixedGroceries.filter((grocery) =>
-				grocery.name.toLowerCase().includes(value.toLowerCase())
-			);
-		}
-
-		setGroceries(updatedGroceries);
 	};
 
 	return (

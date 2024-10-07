@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { data } from "./data/groceries";
 import Header from "./components/Header";
@@ -17,8 +17,7 @@ const App = () => {
 		useState(false);
 	const [itemToRemove, setItemToRemove] = useState(null);
 
-	// ! TODO: Solve this issue using derived state
-	const [fixedGroceries, setFixedGroceries] = useState(data);
+	const [searchItem, setSearchItem] = useState("");
 
 	const closeModal = () => {
 		setIsRemoveFromCartModalOpen(false);
@@ -42,15 +41,20 @@ const App = () => {
 		closeModal();
 	};
 
+	let updatedGroceries = groceries.filter((grocery) =>
+		grocery.name.toLowerCase().includes(searchItem.toLowerCase())
+	);
+
 	return (
 		<div>
 			<Header cart={cart} setIsCartOpen={setIsCartOpen} />
 			<GroceriesList
-				groceries={groceries}
+				groceries={updatedGroceries}
 				cart={cart}
 				setCart={setCart}
 				setGroceries={setGroceries}
-				fixedGroceries={fixedGroceries}
+				searchItem={searchItem}
+				setSearchItem={setSearchItem}
 			/>
 			{isRemoveFromCartModalOpen && (
 				<>
